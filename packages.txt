@@ -1,0 +1,7 @@
+fs
+discord-webhook-node
+requests
+express
+nodemon
+got
+jsdom
