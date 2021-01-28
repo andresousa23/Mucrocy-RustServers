@@ -134,7 +134,27 @@ app.get('/api/servidor/teste', (req, res) => {
 
     got(rustServer_URL).then(response => {
         const dom = new JSDOM(response.body);
-        console.log(dom.window.document.querySelector('css-1y3vvw9').textContent);
+        const t = dom.window.document.querySelectorAll('.css-zwebxb')
+        const b = dom.window.document.querySelectorAll('.event-msg')
+        let players = new Array()
+        let eventos = new Array()
+        t.forEach(element => {
+            players.push(element.textContent)
+        });
+
+        b.forEach(element => {
+            eventos.push(element.textContent)
+            if(element.textContent == "Server responded to query"){
+                eventos.pop()
+            }
+        });
+
+        res.json({
+            "Players":  players,
+            "Eventos":  eventos,
+        })
+
+
       }).catch(err => {
         console.log(err);
       });
