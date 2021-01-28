@@ -1,0 +1,29 @@
+{
+  "name": "mucrocy-rustservers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "discord-webhook-node": "^1.1.8",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "got": "^11.8.1",
+    "html": "^1.0.0",
+    "jsdom": "^16.4.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andresousa23/Mucrocy-RustServers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andresousa23/Mucrocy-RustServers/issues"
+  },
+  "homepage": "https://github.com/andresousa23/Mucrocy-RustServers#readme"
+}
