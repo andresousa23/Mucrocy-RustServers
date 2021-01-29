@@ -5,6 +5,7 @@ express
 nodemon
 got
 jsdom
+pm2
 
 
 //BOT DISCORD

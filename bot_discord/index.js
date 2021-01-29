@@ -6,7 +6,7 @@ const client = new Discord.Client();
 
 let rawdata = fs.readFileSync('../dados.json');
 const data = JSON.parse(rawdata)
-const mucrocyAPI_URL = "http://localhost:3000/api/servidor/logs"
+const mucrocyAPI_URL = "http://localhost/api/servidor/logs"
 const battleMetrics_TOKEN = data['BATTLEMETRICS_TOKEN']
 
 client.on('ready', () => {
@@ -52,9 +52,9 @@ client.on('message', msg => {
                 console.error(err);
               } else {
                   const body = response.body
-                  const array1 = JSON.parse(body)
-                  array2 = verifyIfExists(array1.Eventos, )
-                  let t = verifyIfExists(array3.Evento, array1.Eventos);
+                  const bodyJson = JSON.parse(body)
+                  // array2 = verifyIfExists(array1.Eventos, )
+                  // let t = verifyifexists(array3.evento, array1.eventos);
 
                   console.log(bodyJson.Eventos)
               }

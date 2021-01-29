@@ -152,4 +152,4 @@ app.get('/api/servidor/logs', (req, res) => {
       });
 })
  
-app.listen(3000, () => {console.log("Listening in: http://localhost:3000/");})
+app.listen(80, () => {console.log("Listening in: http://localhost:80/");})
