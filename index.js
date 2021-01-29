@@ -1,5 +1,5 @@
 //Packages import
-const { Webhook } = require('discord-webhook-node')
+//const { Webhook } = require('discord-webhook-node')
 const fs = require('fs')
 const request = require('request')
 const express = require('express')
@@ -9,23 +9,14 @@ const { JSDOM } = jsdom;
 
 const app = express()
 
-
 let rawdata = fs.readFileSync('dados.json');
 let data = JSON.parse(rawdata);
 
-const hook = new Webhook(data['WEBHOOK_URL'])
+//const hook = new Webhook(data['WEBHOOK_URL'])
 
 const rustServer_URL = data['RUSTSERVER_URL']
 const rustAPIServer_URL = data['RUSTAPISERVER_URL']
 const battleMetrics_TOKEN = data['BATTLEMETRICS_TOKEN']
-
-
-
-function sendRequest(string){
-    let teste
-    console.log(teste);
-    return teste
-}
 
  
 app.get('/', (req, res) => {
@@ -37,7 +28,8 @@ app.get('/api/servidor', (req, res) => {
             "/api/servidor/nome",
             "/api/servidor/ip",
             "/api/servidor/maxPlayers",
-            "/api/servidor/onlinePlayers"
+            "/api/servidor/onlinePlayers",
+            "/api/servidor/logs"
         ]
     })
 })
@@ -130,7 +122,7 @@ app.get('/api/servidor/onlinePlayers', (req, res) => {
 })
 
 
-app.get('/api/servidor/teste', (req, res) => {
+app.get('/api/servidor/logs', (req, res) => {
 
     got(rustServer_URL).then(response => {
         const dom = new JSDOM(response.body);
@@ -160,4 +152,4 @@ app.get('/api/servidor/teste', (req, res) => {
       });
 })
  
-app.listen(3000, () => {console.log("Listening in: localhost:3000");})
+app.listen(3000, () => {console.log("Listening in: http://localhost:3000/");})

@@ -5,3 +5,7 @@ express
 nodemon
 got
 jsdom
+
+
+//BOT DISCORD
+discord.js
