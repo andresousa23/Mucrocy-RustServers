@@ -26,7 +26,7 @@ function verifyIfEquals(array1, array2){
 client.on('message', msg => {
     let eventos = new Array()
     let array = new Array()
-    if (msg.content === 'quero logs puta') {
+    if (msg.content === 'quero logs') {
         msg.channel.send("Ok babe, estou a mandar logs", {files:["../fotos/IMG_1443.PNG"]})
         setTimeout(() => {msg.channel.send("OOPS MANDEI A COISA ERRADA")}, 3000)
         setTimeout(() => {msg.channel.send("A enviar.....")}, 3000)
