@@ -8,64 +8,64 @@ let rawdata = fs.readFileSync('../dados.json');
 const data = JSON.parse(rawdata)
 const mucrocyAPI_URL = "http://85.234.128.69/api/servidor/logs"
 
+
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
-
-
-function verifyIfEquals(array1, array2){
-    if(array1.length != array2.length) return false
-
-    for (var i = 0; array1.length < i; i++){
-        if (array1[i] != array2[i]) return false;
-    }
-    
-    return true
-}
 
 client.on('message', msg => {
     let eventos = new Array()
     let array = new Array()
     if (msg.content === 'quero logs puta') {
         msg.channel.send("Ok babe, estou a mandar logs", {files:["../fotos/IMG_1443.PNG"]})
-        setTimeout(() => {msg.channel.send("OOPS MANDEI A COISA ERRADA")}, 3000)
-        setTimeout(() => {msg.channel.send("A enviar.....")}, 3000)
-        setInterval(() => {
+
+
+        var timeout = setTimeout(() => {
+
             request({
                 url: mucrocyAPI_URL,
                 rejectUnauthorized: false
-            
-            }, function(err, response) {
-                if(err) {
+            }, (err, res1) => {
+                if(err){
                     console.error(err);
                 } else {
-                    const body = response.body
-                    const bodyJson = JSON.parse(body)
-                    eventos = bodyJson.Eventos
-                    setTimeout(() =>{
+
+                    const body = res1.body
+
+                    const bodyJSON = JSON.parse(body)
+
+                    eventos = bodyJSON.Eventos
+
+                    setTimeout(() => {
                         request({
                             url: mucrocyAPI_URL,
                             rejectUnauthorized: false
-                        
-                        }, function(err, response) {
-                            if(err) {
+                        }, (err, res2) => {
+                            if(err){
                                 console.error(err);
                             } else {
-                                array = JSON.parse(response.body).Eventos
-                                msg.channel.send("\u200B")
-                                if(verifyIfEquals(eventos, array)){
-                                    for(let i = 0; i < array.length-1; i++){
-                                        msg.channel.send(array[i])
+                                //Pegar no body
+                                const body = res2.body
+                                //Converter a resposta para um json para melhor uso
+                                const bodyJSON = JSON.parse(body)
+                                //Pegar nos eventos
+                                array = bodyJSON.Eventos
+                                for (let i = 0; i < array.length; i++) {
+                                    if(array[i] !== eventos[i]){
+                                        msg.channel.send(`**${new Date().toLocaleString()} (DATA NAO É CERTA MAS PODEM TIRAR UNS SEGUNDITOS)** - ${array[i]}`)
+                                        array.shift()
+                                        i--
                                     }
                                 }
+                                timeout.refresh()
                             }
-                        
-                        });
-                    }, 5000)
+                        })
+                    }, 10 * 1000);
+
                 }
-            
-            });
-        }, 10000)
+            })
+        }, 1 * 1000)
+
         
     }
   });
