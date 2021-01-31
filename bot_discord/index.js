@@ -16,7 +16,7 @@ client.on('ready', () => {
 client.on('message', msg => {
     let eventos = new Array()
     let array = new Array()
-    if (msg.content === 'quero logs puta') {
+    if (msg.content === 'quero logs') {
         msg.channel.send("Ok babe, estou a mandar logs", {files:["../fotos/IMG_1443.PNG"]})
 
 
